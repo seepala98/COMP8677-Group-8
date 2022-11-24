@@ -12,8 +12,8 @@ def create_app(test_config=None):
 	else:
 		app.config.from_mapping(test_config)
 
-	# configure default temperature
-	app.temperature = app.config['DEFAULT_TEMPERATURE']
+	# configure default brightness
+	app.brightness = app.config['DEFAULT_BRIGHTNESS']
 	# configure IoT password
 	app.password = app.config['PASSWORD'] + str(r.random())
 

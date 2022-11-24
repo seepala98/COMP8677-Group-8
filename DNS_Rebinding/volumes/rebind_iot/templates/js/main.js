@@ -1,15 +1,14 @@
 const units = {
-	Celsius: unescape('%B0C'),
-	Fahrenheit: unescape('%B0F')
+	Luman: '',
 };
 
 const config = {
-	minTemp: 0,
-	maxTemp: 100,
-	unit: "Celsius"
+	minLuman: 0,
+	maxLuman: 100,
+	unit: "Luman"
 };
 
-// Change min and max temperature values
+// Change min and max brightness values
 
 const tempValueInputs = document.querySelectorAll("input[type='text']");
 
@@ -22,48 +21,48 @@ tempValueInputs.forEach((input) => {
 		} else {
 			config[input.id] = input.value;
 			range[input.id.slice(0, 3)] = config[input.id]; // Update range
-			return renderTemperature(); // Update temperature
+			return renderBrightness(); // Update brightness
 		}
 	});
 });
 
-// Change temperature
+// Change brightness
 
 let range = document.querySelector("input[type='range']");
-const temperature = document.getElementById("temperature");
+const brightness = document.getElementById("brightness");
 
-function renderTemperature() {
-	temperature.style.height = (range.value - config.minTemp) / (config.maxTemp - config.minTemp) * 100 + "%";
-	temperature.dataset.value = range.value + units[config.unit];
+function renderBrightness() {
+	brightness.innerHTML = range.value + units[config.unit];
+	brightness.dataset.value = range.value + units[config.unit];
 }
 
-function updateTemperature() {
+function updateBrightness() {
 	$.get('/password', function(data) {
-		$.post('/temperature?value=' + range.value + '&password=' + data.password, function(data) {
+		$.post('/brightness?value=' + range.value + '&password=' + data.password, function(data) {
 			console.debug('response from the server: ');
 			console.debug(data);
-			renderTemperature();
+			renderBrightness();
 		});
 	});
 }
 
-range.addEventListener("input", updateTemperature);
+range.addEventListener("input", updateBrightness);
 
 
-function pollTemperature() {
-	$.get('/temperature', function(data) {
-		if (!data.hasOwnProperty('temperature')) {
+function pollBrightness() {
+	$.get('/brightness', function(data) {
+		if (!data.hasOwnProperty('brightness')) {
 			console.error('server does not send the correct data');
 		} else {
-			let newTemperature = data.temperature;
-			if (newTemperature !== Number(range.value)) {
-				console.log('newTemperature is [' + newTemperature + '], range.value is [' + range.value + ']');
-				console.log('set temperature to ' + newTemperature + ' as informed by the server.');
-				range.value = newTemperature;
+			let newBrightness = data.brightness;
+			if (newBrightness !== Number(range.value)) {
+				console.log('newBrightness is [' + newBrightness + '], range.value is [' + range.value + ']');
+				console.log('set brightness to ' + newBrightness + ' as informed by the server.');
+				range.value = newBrightness;
 			}
-			renderTemperature();
+			renderBrightness();
 		}
 	});
 }
 
-setInterval(pollTemperature, 1000);
+setInterval(pollBrightness, 1000);

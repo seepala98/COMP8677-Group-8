@@ -1,14 +1,19 @@
 let url_prefix = 'http://www.seediot32.com'
 
-function updateTemperature() {
-  $.get(url_prefix + '/password', function(data) {
-	$.post(url_prefix + '/temperature?value=99'  
-               + '&password='+ data.password, 
-               function(data) {
-                  console.debug('Got a response from the server!');
-               });
-  });
+function updateBrightness(brightness) {
+    $.get(url_prefix + '/password', function(data) {
+        $.post(url_prefix + '/brightness?value=' + brightness + '&password=' + data.password, function(data) {
+            console.debug('response from the server: '+ data);
+        });
+    });
 }
 
-button = document.getElementById("change");
-button.addEventListener("click", updateTemperature);
+button_on = document.getElementById("on");
+button_off = document.getElementById("off");
+
+button_on.onclick = function() {
+  updateBrightness(99);
+}
+button_off.onclick = function() {
+  updateBrightness(0);
+}
