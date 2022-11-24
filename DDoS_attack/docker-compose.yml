@@ -1,0 +1,57 @@
+version: "3.2"
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_DB: ddos_simulator
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    logging:
+      options:
+        max-size: "1m"
+  redis:
+    container_name: redis
+    image: redis:7
+    restart: always
+    volumes:
+      - redis_data:/data
+    logging:
+      options:
+        max-size: "1m"
+  api:
+    container_name: api
+    image: api
+    build: api
+    restart: always
+    env_file:
+      - ./api/.env
+    volumes:
+      - api_static:/api/static
+    logging:
+      options:
+        max-size: "1m"
+    depends_on:
+      - postgres
+      - redis
+  nginx:
+    container_name: nginx
+    image: nginx
+    build: nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - api_static:/api/static
+    logging:
+      options:
+        max-size: "1m"
+    depends_on:
+      - api
+volumes:
+  postgres_data:
+  redis_data:
+  api_static:
