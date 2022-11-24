@@ -6,7 +6,7 @@ body {
 	display: flex;
 	height: 100vh;
 	margin: 0;
-	background:	#3d3d44;
+	background:	#ebda71;
 	font-family: 'Jaldi', sans-serif;
 	font-size: 14px;
 	color: white;
@@ -35,7 +35,7 @@ p {
 
 // VARIABLES (Have fun) ―――――――――――――――――――――――――
 
-$TM-mainTint: #3d3d44;
+$TM-mainTint: #ebda71;
 $TM-backgroundColor: darken($TM-mainTint, 2%);
 $TM-borderSize: 9px;
 $TM-borderColor: darken($TM-mainTint, 8%);
@@ -62,9 +62,9 @@ $TM-tooltipArrowHeight: 2.2; // Higher numbers produce smaller height
 @mixin border() { border: $TM-borderSize solid $TM-borderColor; }
 
 
-// THERMOMETER ―――――――――――――――――――――――――
+// illuminance ―――――――――――――――――――――――――
 
-#thermometer {
+#illuminance {
 	width: $TM-width;
 	background: $TM-backgroundColor;
 	height: $TM-height;
@@ -122,7 +122,7 @@ $TM-tooltipArrowHeight: 2.2; // Higher numbers produce smaller height
 		}
 	}
 
-	#temperature {
+	#brightness {
 		bottom: 0;
 		background: $TM-mercuryColor;
 		width: 100%;
@@ -134,7 +134,7 @@ $TM-tooltipArrowHeight: 2.2; // Higher numbers produce smaller height
 			position: absolute;
 		}
 
-		// Temperature value - Tooltip
+		// brightness value - Tooltip
 
 		&:before {
 			content: attr(data-value);
@@ -173,7 +173,7 @@ $TM-tooltipArrowHeight: 2.2; // Higher numbers produce smaller height
 		display: flex;
 
 		input[type="text"] {
-			width: 2em;
+			width: 20em;
 			background: transparent;
 			border: none;
 			color: inherit;

