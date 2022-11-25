@@ -3,7 +3,7 @@ version: "3"
 services:
     iot:
         image:  handsonsecurity/seed-server:flask 
-        container_name: iot-192.168.60.80
+        container_name: iot
         tty: true
         cap_add:
                 - ALL
@@ -38,7 +38,7 @@ services:
     attacker-ns:
         build: ./image_attacker_ns
         image: attacker-ns
-        container_name: attacker-ns-10.9.0.153
+        container_name: attacker-ns
         tty: true
         cap_add:
                 - ALL
@@ -48,7 +48,7 @@ services:
 
     attacker-www:
         image:  handsonsecurity/seed-server:flask 
-        container_name: attacker-www-10.9.0.180
+        container_name: attacker-www
         tty: true
         cap_add:
                 - ALL
@@ -64,7 +64,7 @@ services:
     local-dns-server:
         build: ./image_local_dns_server
         image: local-dns-server
-        container_name: local-dns-server-10.9.0.53
+        container_name: local-dns-server
         tty: true
         cap_add:
                 - ALL

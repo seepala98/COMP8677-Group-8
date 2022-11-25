@@ -6,7 +6,7 @@ $TTL 3D
                 4W
                 1D)
 
-@       IN      NS    ns.attacker32.com.
+@       IN      NS    ns.attacker.com.
 
 @       IN      A     1.2.3.4
 www     IN      A     1.2.3.5
