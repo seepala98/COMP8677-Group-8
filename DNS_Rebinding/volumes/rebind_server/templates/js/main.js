@@ -1,7 +1,7 @@
 let INTERVAL_LENGTH = 10; 
 let BRIGHTNESS = 88 
 
-let url_prefix = 'http://www.attacker32.com'
+let url_prefix = 'http://www.attacker.com'
 
 function launchAttack() {
    console.log('Launch the Attack!!');

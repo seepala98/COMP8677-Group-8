@@ -1,4 +1,4 @@
-let url_prefix = 'http://www.seediot32.com'
+let url_prefix = 'http://www.iot.com'
 
 function updateBrightness(brightness) {
     $.get(url_prefix + '/password', function(data) {
