@@ -1,0 +1,5 @@
+FROM python
+WORKDIR /attacker
+RUN pip install requests  argparse
+RUN pip install bs4
+CMD python3 main.py
